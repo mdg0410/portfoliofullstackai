@@ -32,3 +32,7 @@ export const consoleSlice = createSlice({
     },
   },
 });
+
+// Exportando las acciones y el reducer
+export const { addConsoleEntry, setTypingStatus, clearConsole } = consoleSlice.actions;
+export default consoleSlice.reducer;

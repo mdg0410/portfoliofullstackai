@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAppDispatch, useAppSelector } from '../../store';
 import { sendMessage, fetchAIResponse, selectHistory, selectLoading } from '../../store/slices/aiSlice';
-import BlinkingCursor from '../atoms/BlinkingCursor';
+// import BlinkingCursor from '../atoms/BlinkingCursor';
 
 interface AIChatProps {
   isOpen: boolean;

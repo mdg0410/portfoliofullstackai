@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
-import { motion } from 'framer-motion';
-import ConsoleInterface from '../components/organisms/ConsoleInterface';
+// import { motion } from 'framer-motion';
+// import ConsoleInterface from '../components/organisms/ConsoleInterface';
 import { RootState } from '../store';
 import { useState, useEffect } from 'react';
 import { useAppDispatch } from '../store';

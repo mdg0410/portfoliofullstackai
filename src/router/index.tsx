@@ -65,9 +65,5 @@ const router = createBrowserRouter([
   }
 ]);
 
-// Componente principal para renderizar el router
-const AppRouter = () => {
-  return <RouterProvider router={router} />;
-};
-
-export default AppRouter;
+// Exportamos directamente el objeto router en lugar del componente
+export default router;

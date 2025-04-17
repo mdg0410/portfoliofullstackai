@@ -107,7 +107,7 @@ interface SkillCategoryProps {
   title: string;
   skills: { name: string; level: number }[];
   delay: number;
-  icon: JSX.Element;
+  icon: React.ReactNode; // Cambiamos JSX.Element por React.ReactNode
 }
 
 const SkillCategory: React.FC<SkillCategoryProps> = ({ title, skills, delay, icon }) => {

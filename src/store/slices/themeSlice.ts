@@ -17,3 +17,7 @@ export const themeSlice = createSlice({
     },
   },
 });
+
+// Exportando las acciones y el reducer
+export const { toggleTheme } = themeSlice.actions;
+export default themeSlice.reducer;
