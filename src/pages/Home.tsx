@@ -8,28 +8,12 @@ import { setActiveSection } from '../store/slices/navigationSlice';
 import HeroSection from '../components/sections/HeroSection';
 import AboutSection from '../components/sections/AboutSection';
 import SkillsSection from '../components/sections/SkillsSection';
+import ProjectsSection from '../components/sections/ProjectsSection';
+import StackSection from '../components/sections/StackSection';
+import ContactSection from '../components/sections/ContactSection';
 import { Element, Events } from 'react-scroll';
 import { AnimatePresence } from 'framer-motion';
 import AIChat from '../components/molecules/AIChat';
-
-// Componentes de sección (placeholder para implementaciones futuras)
-const ProjectsSection = () => (
-  <Element name="projects" className="h-screen bg-[#0D0D0D] flex items-center justify-center">
-    <h2 className="text-4xl text-white font-['Orbitron']">Projects Section</h2>
-  </Element>
-);
-
-const StackSection = () => (
-  <Element name="stack" className="h-screen bg-[#0D0D0D] flex items-center justify-center">
-    <h2 className="text-4xl text-white font-['Orbitron']">Stack Section</h2>
-  </Element>
-);
-
-const ContactSection = () => (
-  <Element name="contact" className="h-screen bg-[#0D0D0D] flex items-center justify-center">
-    <h2 className="text-4xl text-white font-['Orbitron']">Contact Section</h2>
-  </Element>
-);
 
 const Home = () => {
   const dispatch = useAppDispatch();
