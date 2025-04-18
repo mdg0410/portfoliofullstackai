@@ -10,7 +10,7 @@ const profileData = {
   "rol_profesional": "Desarrollador Full Stack",
   "stack_actual": ["React", "Vite", "Redux Toolkit", "Node.js", "Express", "MongoDB"],
   "lenguajes": ["JavaScript", "C#"],
-  "tecnologías_IA": ["ChatGPT", "Copilot Claude", "n8n", "Zoho CRM", "Socket.IO", "Redis", "PDF.js", "Lodash"],
+  "tecnologías_IA": ["ChatGPT (ideas)", "Gemini (investigación)", "Claude (Razonamiento)", "Copilot GitHub (Integración y desarrollo de código)", "Grok (Tendencia)"],
   "especializaciones": ["Full Stack Apps", "Integraciones IA", "Automatización n8n", "Prompt Engineering"],
   "estudios": ["ITSCO 2022", "Bootcamp Microverse"],
   "proyectos_destacados": ["Karibu (MERN karaoke)", "Ghostshop (n8n + CRM)"],
@@ -118,7 +118,7 @@ const AboutSection: React.FC = () => {
         const timer = setTimeout(() => {
           setCurrentLogIndex(prev => prev + 1);
           setIsTyping(false);
-        }, 1500); // Tiempo entre logs
+        }, 1000); // Reducido para mejor experiencia de usuario
         
         return () => clearTimeout(timer);
       }
@@ -145,10 +145,10 @@ const AboutSection: React.FC = () => {
       <section 
         id="about"
         ref={sectionRef}
-        className="min-h-screen w-full bg-brutal-black flex items-center justify-center py-20 px-4 relative overflow-hidden"
+        className="min-h-screen w-full bg-[#0D0D0D] flex items-center justify-center py-20 px-4 relative overflow-hidden"
       >
         {/* Líneas decorativas brutalistas */}
-        <div className="absolute top-0 left-0 right-0 h-6 bg-brutal-black border-b-2 border-[#FF4F00]"></div>
+        <div className="absolute top-0 left-0 right-0 h-6 bg-[#0D0D0D] border-b-2 border-[#FF4F00]"></div>
         <div className="absolute top-6 left-4 font-mono text-xs text-[#FF4F00]">/about</div>
         <div className="absolute top-6 right-4 font-mono text-xs text-[#FF4F00]">section.02</div>
         
@@ -174,9 +174,15 @@ const AboutSection: React.FC = () => {
           </div>
           
           {/* Contenido de la terminal */}
-          <div className="p-4 font-mono text-sm h-[500px] overflow-y-auto bg-gray-950">
+          <div className="p-4 font-mono text-sm h-[500px] overflow-y-auto bg-gray-950 scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-gray-900">
             {logs.slice(0, currentLogIndex).map((log, index) => (
-              <div key={index} className="mb-3">
+              <motion.div 
+                key={index} 
+                className="mb-3"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3 }}
+              >
                 {/* Timestamp y tipo de log */}
                 <div className="flex gap-2 text-xs">
                   <span className="text-gray-500">[{new Date(log.timestamp).toLocaleTimeString()}]</span>
@@ -194,7 +200,7 @@ const AboutSection: React.FC = () => {
                     ))}
                   </div>
                 )}
-              </div>
+              </motion.div>
             ))}
             
             {/* Cursor parpadeante al final */}

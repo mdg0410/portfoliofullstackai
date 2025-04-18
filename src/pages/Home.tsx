@@ -1,6 +1,4 @@
 import { useSelector } from 'react-redux';
-// import { motion } from 'framer-motion';
-// import ConsoleInterface from '../components/organisms/ConsoleInterface';
 import { RootState } from '../store';
 import { useState, useEffect } from 'react';
 import { useAppDispatch } from '../store';
@@ -65,7 +63,7 @@ const Home = () => {
       {/* Navegación lateral */}
       <nav className="fixed right-8 top-1/2 transform -translate-y-1/2 z-40 hidden md:block">
         <ul className="space-y-4">
-          {['hero', 'about', 'projects', 'skills', 'stack', 'contact'].map((section, index) => (
+          {['hero', 'about', 'projects', 'skills', 'stack', 'contact'].map((section) => (
             <li key={section}>
               <a
                 href={`#${section}`}
@@ -89,6 +87,7 @@ const Home = () => {
       <button
         onClick={() => setChatOpen(true)}
         className="fixed bottom-8 right-8 z-30 w-16 h-16 rounded-full bg-[#FF4F00] flex items-center justify-center shadow-lg hover:scale-110 transition-transform"
+        aria-label="Abrir chat"
       >
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="h-8 w-8 text-white">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />

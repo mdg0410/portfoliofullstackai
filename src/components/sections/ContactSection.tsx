@@ -113,6 +113,11 @@ const ContactSection: React.FC = () => {
       }, 5000);
     }
   };
+
+  const contactInfo = {
+    email: 'levoyersteven@gmail.com',
+    phone: '+593 96 288 9699',
+  };
   
   return (
     <Element name="contact">
@@ -413,8 +418,23 @@ const ContactSection: React.FC = () => {
                   </div>
                   <div>
                     <p className="text-sm text-gray-500 font-mono">Email:</p>
-                    <a href="mailto:steven@levoyer.dev" className="text-white hover:text-[#FF4F00] transition-colors">
-                      steven@levoyer.dev
+                    <a href={`mailto:${contactInfo.email}`} className="text-white hover:text-[#FF4F00] transition-colors">
+                      {contactInfo.email}
+                    </a>
+                  </div>
+                </div>
+                
+                {/* Teléfono */}
+                <div className="flex items-start">
+                  <div className="w-10 h-10 rounded-sm bg-gray-800 flex items-center justify-center mr-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-[#FF4F00]" viewBox="0 0 20 20" fill="currentColor">
+                      <path fillRule="evenodd" d="M2 3.5A1.5 1.5 0 013.5 2h13A1.5 1.5 0 0118 3.5v13a1.5 1.5 0 01-1.5 1.5h-13A1.5 1.5 0 012 16.5v-13zM4 4v12h12V4H4z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500 font-mono">Teléfono:</p>
+                    <a href={`tel:${contactInfo.phone}`} className="text-white hover:text-[#FF4F00] transition-colors">
+                      {contactInfo.phone}
                     </a>
                   </div>
                 </div>

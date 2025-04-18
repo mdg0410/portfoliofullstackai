@@ -3,14 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import type { TypedUseSelectorHook } from 'react-redux';
 import themeReducer from './slices/themeSlice';
 import navigationReducer from './slices/navigationSlice';
-import consoleReducer from './slices/consoleSlice';
 import aiReducer from './slices/aiSlice';
 
 export const store = configureStore({
   reducer: {
     theme: themeReducer,
     navigation: navigationReducer,
-    console: consoleReducer,
     ai: aiReducer,
   },
   middleware: (getDefaultMiddleware) =>
