@@ -12,10 +12,12 @@ import ContactSection from '../components/sections/ContactSection';
 import { Element, Events } from 'react-scroll';
 import { AnimatePresence } from 'framer-motion';
 import AIChat from '../components/molecules/AIChat';
+import BugHuntGame from '../components/molecules/BugHuntGame';
 
 const Home = () => {
   const dispatch = useAppDispatch();
   const [chatOpen, setChatOpen] = useState(false);
+  const [gameActive, setGameActive] = useState(false);
   const { mode } = useSelector((state: RootState) => state.theme);
 
   // Configurar eventos de scroll para actualizar la sección activa
@@ -83,19 +85,33 @@ const Home = () => {
         </ul>
       </nav>
 
-      {/* Botón de chat flotante */}
-      <button
-        onClick={() => setChatOpen(true)}
-        className="fixed bottom-8 right-8 z-30 w-16 h-16 rounded-full bg-[#FF4F00] flex items-center justify-center shadow-lg hover:scale-110 transition-transform"
-        aria-label="Abrir chat"
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="h-8 w-8 text-white">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
-        </svg>
-      </button>
+      {/* Botones flotantes */}
+      <div className="fixed bottom-8 right-8 z-30 flex flex-col gap-4 items-end">
+        <button
+          onClick={() => setGameActive(!gameActive)}
+          className="w-16 h-16 rounded-full bg-purple-600 flex items-center justify-center shadow-lg hover:scale-110 transition-transform"
+          aria-label="Jugar a buscar bugs"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="h-8 w-8 text-white">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+          </svg>
+        </button>
 
-      {/* Componente de Chat con IA */}
+        <button
+          onClick={() => setChatOpen(true)}
+          className="w-16 h-16 rounded-full bg-[#FF4F00] flex items-center justify-center shadow-lg hover:scale-110 transition-transform"
+          aria-label="Abrir chat"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="h-8 w-8 text-white">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+          </svg>
+        </button>
+      </div>
+
+      {/* Componentes modales */}
       <AnimatePresence>
+        {gameActive && <BugHuntGame />}
         <AIChat isOpen={chatOpen} onClose={() => setChatOpen(false)} />
       </AnimatePresence>
     </div>
