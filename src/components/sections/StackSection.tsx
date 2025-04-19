@@ -33,78 +33,103 @@ const techStack = {
   ],
 };
 
+// Conexiones entre categorías para el diagrama
+const connections = [
+  { from: 'frontend', to: 'backend', label: 'API Calls' },
+  { from: 'backend', to: 'ai', label: 'IA Integration' },
+  { from: 'ai', to: 'frontend', label: 'UI/UX Enhancement' },
+  { from: 'devops', to: 'frontend', label: 'Deployment' },
+  { from: 'devops', to: 'backend', label: 'CI/CD Pipeline' },
+  { from: 'backend', to: 'devops', label: 'Monitoring' },
+];
+
 // Componente para un nodo de tecnología
 interface TechNodeProps {
   title: string;
   techs: Array<{ name: string; icon: string; level: string }>;
+  color: string;
   position: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
   delay: number;
 }
 
-const TechNode: React.FC<TechNodeProps> = ({ title, techs, position, delay }) => {
+const TechNode: React.FC<TechNodeProps> = ({ title, techs, color, position, delay }) => {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
+      className={`w-full h-full bg-[#0a0a0a] border-2 border-${color}-500 rounded-sm flex flex-col`}
+      initial={{ opacity: 0, scale: 0.8 }}
+      animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5, delay }}
-      className={`bg-[#0a0a0a] border-2 border-[#FF4F00] rounded-sm overflow-hidden h-full relative group`}
     >
-      {/* Efecto de resplandor en hover */}
-      <div className="absolute inset-0 bg-[#FF4F00] opacity-0 group-hover:opacity-5 transition-opacity duration-300"></div>
-      
-      {/* Header del nodo */}
-      <div className="bg-[#0D0D0D] px-4 py-3 flex justify-between items-center border-b-2 border-[#FF4F00]">
-        <div className="flex items-center space-x-3">
-          <div className="w-2 h-2 bg-[#FF4F00] animate-pulse"></div>
-          <h3 className="text-lg font-['Orbitron'] text-white">{title}</h3>
-        </div>
-        <div className="flex items-center space-x-2 text-xs font-mono">
-          <span className="text-gray-500">status:</span>
-          <span className="text-green-400">active</span>
+      <div className={`bg-${color}-500 bg-opacity-20 px-4 py-3 flex justify-between items-center`}>
+        <h3 className="text-lg font-['Orbitron'] text-white flex items-center gap-2">
+          <span className="text-xs text-${color}-400">[</span>
+          {title}
+          <span className="text-xs text-${color}-400">]</span>
+        </h3>
+        <div className="flex items-center gap-2">
+          <div className="w-2 h-2 rounded-full bg-red-500"></div>
+          <div className="w-2 h-2 rounded-full bg-yellow-500"></div>
+          <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
         </div>
       </div>
       
-      {/* Contenido del nodo */}
-      <div className="p-4 space-y-3 relative">
+      <div className="p-4 space-y-2 flex-1">
         {techs.map((tech, index) => (
-          <motion.div
+          <motion.div 
             key={tech.name}
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.3, delay: delay + index * 0.1 }}
-            className="group/tech flex items-center justify-between p-2 bg-[#0D0D0D] border border-gray-800 hover:border-[#FF4F00] transition-colors"
+            initial={{ x: -20, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ delay: delay + index * 0.1 }}
+            className="flex items-center justify-between py-1.5 border-b border-gray-800 last:border-b-0 hover:bg-gray-900 transition-colors"
           >
-            <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 flex items-center justify-center bg-[#0D0D0D] border border-[#FF4F00] font-mono text-[#FF4F00] group-hover/tech:bg-[#FF4F00] group-hover/tech:text-white transition-all">
+            <div className="flex items-center gap-2">
+              <span className="w-6 h-6 flex items-center justify-center bg-gray-800 rounded-sm font-mono text-${color}-400 text-sm">
                 {tech.icon}
-              </div>
-              <span className="text-gray-300 group-hover/tech:text-white transition-colors">{tech.name}</span>
+              </span>
+              <span className="text-sm text-gray-300 font-medium">{tech.name}</span>
             </div>
-            <span className={`
-              px-2 py-1 text-xs font-mono rounded
-              ${tech.level === 'Experto' ? 'bg-green-900/30 text-green-400 border border-green-700' :
-                tech.level === 'Avanzado' ? 'bg-blue-900/30 text-blue-400 border border-blue-700' :
-                tech.level === 'Intermedio' ? 'bg-yellow-900/30 text-yellow-400 border border-yellow-700' :
-                'bg-red-900/30 text-red-400 border border-red-700'}
-            `}>
+            <span className={`text-xs px-2 py-0.5 rounded ${
+              tech.level === 'Experto' ? 'bg-green-900 text-green-300 border border-green-700' :
+              tech.level === 'Avanzado' ? 'bg-blue-900 text-blue-300 border border-blue-700' :
+              tech.level === 'Intermedio' ? 'bg-yellow-900 text-yellow-300 border border-yellow-700' :
+              'bg-red-900 text-red-300 border border-red-700'
+            }`}>
               {tech.level}
             </span>
           </motion.div>
         ))}
-        
-        {/* Líneas decorativas */}
-        <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#FF4F00] to-transparent opacity-20"></div>
-        <div className="absolute top-0 right-0 w-px h-full bg-gradient-to-b from-transparent via-[#FF4F00] to-transparent opacity-20"></div>
-      </div>
-      
-      {/* Footer del nodo */}
-      <div className="px-4 py-2 border-t border-gray-800 bg-[#0D0D0D]">
-        <div className="flex justify-between items-center text-xs font-mono">
-          <span className="text-gray-500">total: {techs.length}</span>
-          <span className="text-[#FF4F00]">[ {position} ]</span>
-        </div>
       </div>
     </motion.div>
+  );
+};
+
+// Componente para una conexión entre nodos
+interface ConnectionProps {
+  from: string;
+  to: string;
+  label: string;
+  delay: number;
+  color: string;
+}
+
+const Connection: React.FC<ConnectionProps> = ({ from, to, label, delay, color }) => {
+  return (
+    <div className="w-full h-full flex items-center justify-center relative">
+      <motion.div
+        className={`absolute h-[2px] bg-${color}-500`}
+        style={{
+          width: '100%',
+          transformOrigin: from === 'frontend' || from === 'ai' ? 'left' : 'right'
+        }}
+        initial={{ scaleX: 0, opacity: 0 }}
+        animate={{ scaleX: 1, opacity: 0.6 }}
+        transition={{ duration: 0.8, delay }}
+      >
+        <div className={`absolute left-1/2 -translate-x-1/2 -translate-y-3 px-2 py-1 bg-[#0D0D0D] text-${color}-500 text-xs font-mono border border-${color}-500 whitespace-nowrap z-10`}>
+          {label}
+        </div>
+      </motion.div>
+    </div>
   );
 };
 
@@ -118,114 +143,189 @@ const StackSection: React.FC = () => {
       <section 
         id="stack"
         ref={sectionRef}
-        className="min-h-screen w-full bg-[#0D0D0D] py-20 px-4 relative overflow-hidden"
+        className="min-h-screen w-full bg-[#0D0D0D] py-24 px-4 relative overflow-hidden"
       >
-        {/* Líneas decorativas brutalistas */}
-        <div className="absolute top-0 left-0 right-0 h-6 bg-[#0D0D0D] border-b-2 border-[#FF4F00]"></div>
-        <div className="absolute top-6 left-4 font-mono text-xs text-[#FF4F00]">/stack</div>
-        <div className="absolute top-6 right-4 font-mono text-xs text-[#FF4F00]">section.04</div>
+        {/* Líneas decorativas mejoradas */}
+        <div className="absolute top-0 left-0 right-0 h-8 bg-[#0D0D0D] border-b-2 border-[#FF4F00]"></div>
+        <div className="absolute top-8 left-4 font-mono text-xs text-[#FF4F00] flex items-center gap-2">
+          <span className="w-2 h-2 bg-[#FF4F00] rounded-full animate-pulse"></span>
+          /stack_architecture
+        </div>
+        <div className="absolute top-8 right-4 font-mono text-xs text-[#FF4F00] flex items-center gap-2">
+          build_version: 2.0.4
+          <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+        </div>
         
-        {/* Contenedor principal */}
-        <div className="max-w-6xl mx-auto">
-          {/* Header */}
-          <div className="mb-12">
-            <h2 className="text-4xl font-['Orbitron'] text-white mb-4">
+        {/* Header mejorado de la sección */}
+        <div className="max-w-6xl mx-auto mb-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <h2 className="text-4xl md:text-5xl font-['Orbitron'] text-white">
               <span className="text-[#FF4F00]">&lt;</span> 
               STACK TECNOLÓGICO
               <span className="text-[#FF4F00]"> /&gt;</span>
             </h2>
-            <div className="flex items-center space-x-4">
-              <div className="px-3 py-1 bg-[#FF4F00] text-white text-xs font-mono">
-                SYSTEM_INFO
-              </div>
-              <p className="text-gray-400 font-mono text-sm">
-                Visualización del ecosistema tecnológico y sus conexiones
+            <div className="mt-4 space-y-2">
+              <p className="text-gray-400 font-mono">
+                <span className="text-[#FF4F00]">//</span> Arquitectura modular y escalable
+              </p>
+              <p className="text-gray-400 font-mono">
+                <span className="text-[#FF4F00]">//</span> Tecnologías de última generación
+              </p>
+              <p className="text-gray-400 font-mono">
+                <span className="text-[#FF4F00]">//</span> Integración continua y despliegue automatizado
               </p>
             </div>
-          </div>
-          
-          {/* Grid container */}
-          <div className="relative bg-[#0D0D0D] border-2 border-gray-800 p-8">
-            {/* Fondo con patrón de puntos */}
-            <div className="absolute inset-0" style={{
-              backgroundImage: 'radial-gradient(circle, rgba(255, 79, 0, 0.1) 1px, transparent 1px)',
-              backgroundSize: '30px 30px'
-            }}></div>
-            
-            {/* Grid de tecnologías */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
-              {isInView && (
-                <>
+          </motion.div>
+        </div>
+        
+        {/* Grid Container Principal */}
+        <div className="max-w-7xl mx-auto bg-[#0D0D0D] h-[80vh] border border-gray-800 rounded-lg relative mt-8">
+          {/* Grid de fondo */}
+          <div 
+            className="absolute inset-0 opacity-20"
+            style={{
+              backgroundImage: `
+                radial-gradient(circle, rgba(255, 79, 0, 0.2) 1px, transparent 1px),
+                linear-gradient(to right, rgba(255, 79, 0, 0.1) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 79, 0, 0.1) 1px, transparent 1px)
+              `,
+              backgroundSize: '30px 30px, 60px 60px, 60px 60px'
+            }}
+          ></div>
+
+          {/* Grid Layout Principal */}
+          <div className="grid grid-cols-5 grid-rows-5 gap-8 h-full p-8">
+            {isInView && (
+              <>
+                {/* Frontend y Backend - Primera Fila */}
+                <div className="col-span-2 row-span-2">
                   <TechNode 
-                    title="FRONTEND"
-                    techs={techStack.frontend}
-                    position="top-left"
-                    delay={0.2}
+                    title="FRONTEND" 
+                    techs={techStack.frontend} 
+                    color="blue" 
+                    position="top-left" 
+                    delay={0.2} 
                   />
+                </div>
+
+                {/* Conexión Frontend-Backend */}
+                <div className="row-span-2 col-start-3 row-start-1 flex items-center">
+                  <Connection 
+                    from="frontend"
+                    to="backend"
+                    label="API REST"
+                    delay={1.5}
+                    color="blue"
+                  />
+                </div>
+
+                <div className="col-span-2 row-span-2 col-start-4 row-start-1">
                   <TechNode 
-                    title="BACKEND"
-                    techs={techStack.backend}
-                    position="top-right"
-                    delay={0.4}
+                    title="BACKEND" 
+                    techs={techStack.backend} 
+                    color="green" 
+                    position="top-right" 
+                    delay={0.5} 
                   />
+                </div>
+
+                {/* AI y DevOps - Segunda Fila */}
+                <div className="col-span-2 row-span-2 row-start-3">
                   <TechNode 
-                    title="AI & INTEGRACIÓN"
-                    techs={techStack.ai}
-                    position="bottom-left"
-                    delay={0.6}
+                    title="AI & INTEGRACIÓN" 
+                    techs={techStack.ai} 
+                    color="orange" 
+                    position="bottom-left" 
+                    delay={0.8} 
                   />
+                </div>
+
+                {/* Conexiones Verticales */}
+                <div className="row-span-2 col-start-3 row-start-3 grid grid-rows-2 gap-4">
+                  {/* Conexión Frontend-AI */}
+                  <div className="relative">
+                    <Connection 
+                      from="frontend"
+                      to="ai"
+                      label="UI Enhancement"
+                      delay={1.8}
+                      color="orange"
+                    />
+                  </div>
+                  {/* Conexión Backend-DevOps */}
+                  <div className="relative">
+                    <Connection 
+                      from="backend"
+                      to="devops"
+                      label="CI/CD Pipeline"
+                      delay={2.1}
+                      color="purple"
+                    />
+                  </div>
+                </div>
+
+                <div className="col-span-2 row-span-2 col-start-4 row-start-3">
                   <TechNode 
-                    title="DEVOPS"
-                    techs={techStack.devops}
-                    position="bottom-right"
-                    delay={0.8}
+                    title="DEVOPS" 
+                    techs={techStack.devops} 
+                    color="purple" 
+                    position="bottom-right" 
+                    delay={1.1} 
                   />
-                </>
-              )}
-            </div>
-            
-            {/* Líneas de conexión decorativas */}
-            <div className="absolute inset-0 pointer-events-none">
-              <motion.div 
-                className="absolute top-1/2 left-0 w-full h-px bg-[#FF4F00] opacity-10"
-                initial={{ scaleX: 0 }}
-                animate={isInView ? { scaleX: 1 } : { scaleX: 0 }}
-                transition={{ duration: 1, delay: 1 }}
-              />
-              <motion.div 
-                className="absolute top-0 left-1/2 w-px h-full bg-[#FF4F00] opacity-10"
-                initial={{ scaleY: 0 }}
-                animate={isInView ? { scaleY: 1 } : { scaleY: 0 }}
-                transition={{ duration: 1, delay: 1.2 }}
-              />
-            </div>
-          </div>
-          
-          {/* Footer con estadísticas */}
-          <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div className="bg-[#0D0D0D] border border-gray-800 p-4">
-              <div className="text-xs font-mono text-gray-500">Total Tech Stack</div>
-              <div className="text-2xl font-['Orbitron'] text-[#FF4F00]">
-                {Object.values(techStack).flat().length}
-              </div>
-            </div>
-            <div className="bg-[#0D0D0D] border border-gray-800 p-4">
-              <div className="text-xs font-mono text-gray-500">Stack Level</div>
-              <div className="text-2xl font-['Orbitron'] text-green-500">Advanced</div>
-            </div>
-            <div className="bg-[#0D0D0D] border border-gray-800 p-4">
-              <div className="text-xs font-mono text-gray-500">Update Status</div>
-              <div className="text-2xl font-['Orbitron'] text-blue-500">Latest</div>
-            </div>
-            <div className="bg-[#0D0D0D] border border-gray-800 p-4">
-              <div className="text-xs font-mono text-gray-500">System Status</div>
-              <div className="text-2xl font-['Orbitron'] flex items-center text-green-500">
-                Online
-                <div className="ml-2 w-2 h-2 bg-green-500 rounded-full animate-pulse"/>
-              </div>
-            </div>
+                </div>
+
+                {/* Leyenda - Fila Inferior */}
+                <div className="col-start-3 row-start-5">
+                  <motion.div 
+                    className="bg-[#0a0a0a] p-4 border border-gray-800 rounded-sm backdrop-blur-sm"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 2.8 }}
+                  >
+                    <h4 className="text-sm font-['Orbitron'] text-[#FF4F00] mb-3 flex items-center gap-2">
+                      <span className="w-2 h-2 bg-[#FF4F00] rounded-full animate-pulse"></span>
+                      Tech Stack
+                    </h4>
+                    <div className="grid grid-cols-2 gap-3 text-xs">
+                      <div className="flex items-center gap-2 group">
+                        <span className="w-2 h-2 bg-blue-500 group-hover:animate-pulse"></span>
+                        <span className="text-gray-300">Frontend</span>
+                      </div>
+                      <div className="flex items-center gap-2 group">
+                        <span className="w-2 h-2 bg-green-500 group-hover:animate-pulse"></span>
+                        <span className="text-gray-300">Backend</span>
+                      </div>
+                      <div className="flex items-center gap-2 group">
+                        <span className="w-2 h-2 bg-orange-500 group-hover:animate-pulse"></span>
+                        <span className="text-gray-300">AI</span>
+                      </div>
+                      <div className="flex items-center gap-2 group">
+                        <span className="w-2 h-2 bg-purple-500 group-hover:animate-pulse"></span>
+                        <span className="text-gray-300">DevOps</span>
+                      </div>
+                    </div>
+                  </motion.div>
+                </div>
+              </>
+            )}
           </div>
         </div>
+        
+        {/* Nota al pie mejorada */}
+        <motion.div 
+          className="max-w-6xl mx-auto mt-8 text-center"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 3 }}
+        >
+          <p className="text-sm text-gray-500 font-mono">
+            <span className="text-[#FF4F00]">*</span> Stack tecnológico en constante evolución y mejora continua
+          </p>
+        </motion.div>
       </section>
     </Element>
   );
