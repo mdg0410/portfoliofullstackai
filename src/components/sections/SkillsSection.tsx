@@ -19,7 +19,7 @@ const skillsData = {
     { name: 'REST APIs', level: 87 },
   ],
   aiTools: [
-    { name: 'n8n', level: 94 },
+    { name: 'n8n', level: 84 },
     { name: 'Prompt Engineering', level: 90 },
     { name: 'ChatGPT Integration', level: 88 },
     { name: 'Zoho CRM', level: 82 },

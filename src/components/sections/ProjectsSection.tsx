@@ -85,6 +85,7 @@ const Project: React.FC<{
     >
       <div 
         className={`bg-[#111111] w-full max-w-3xl h-[80vh] rounded border-2 ${isActive ? 'border-[#FF4F00]' : 'border-gray-800'} overflow-hidden shadow-xl transform transition-all duration-300`}
+        style={{height: '100%'}}
       >
         {/* Header del proyecto */}
         <div className="p-4 border-b-2 border-gray-800 flex justify-between items-center bg-[#0a0a0a]">
