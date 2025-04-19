@@ -183,7 +183,7 @@ const StackSection: React.FC = () => {
         </div>
         
         {/* Grid Container Principal */}
-        <div className="max-w-7xl mx-auto bg-[#0D0D0D] h-[80vh] border border-gray-800 rounded-lg relative mt-8">
+        <div className="max-w-7xl mx-auto bg-[#0D0D0D] h-[80vh] border border-gray-800 rounded-lg relative mt-8" style={{height: '100%'}}>
           {/* Grid de fondo */}
           <div 
             className="absolute inset-0 opacity-20"
