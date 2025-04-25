@@ -42,7 +42,7 @@ interface SkillBarProps {
   category: string;
 }
 
-const SkillBar: React.FC<SkillBarProps> = ({ name, level, index, category }) => {
+const SkillBar: React.FC<SkillBarProps> = ({ name, level, index }) => {
   // Determinar el color según el nivel de habilidad
   const getBarColor = (level: number) => {
     if (level >= 90) return '#00FF66'; // Verde brillante para niveles altos

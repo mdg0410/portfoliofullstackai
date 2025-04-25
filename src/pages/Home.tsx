@@ -1,5 +1,5 @@
-import { useSelector } from 'react-redux';
-import { RootState } from '../store';
+// import { useSelector } from 'react-redux';
+// import { RootState } from '../store';
 import { useState, useEffect } from 'react';
 import { useAppDispatch } from '../store';
 import { setActiveSection } from '../store/slices/navigationSlice';
@@ -18,7 +18,7 @@ const Home = () => {
   const dispatch = useAppDispatch();
   const [chatOpen, setChatOpen] = useState(false);
   const [gameActive, setGameActive] = useState(false);
-  const { mode } = useSelector((state: RootState) => state.theme);
+  // const { mode } = useSelector((state: RootState) => state.theme);
 
   // Configurar eventos de scroll para actualizar la sección activa
   useEffect(() => {

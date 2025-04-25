@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { motion, useAnimation } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Element } from 'react-scroll';
 
 // Datos de proyectos
@@ -215,7 +215,7 @@ const Project: React.FC<{
 // Componente principal de la sección de proyectos
 const ProjectsSection: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const controls = useAnimation();
+  // const controls = useAnimation();
   const sectionRef = useRef<HTMLDivElement>(null);
   
   // Navegación entre proyectos

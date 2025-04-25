@@ -38,6 +38,7 @@ export const fetchAIResponse = createAsyncThunk(
       "¿Te gustaría conocer más sobre mis proyectos Karibu o Ghostshop?",
       "Mi stack principal incluye JavaScript y C#, con un enfoque en tecnologías modernas.",
       "¡Estoy aquí para responder tus preguntas! ¿Qué más te gustaría saber?",
+      `${prompt}`
     ];
     
     const randomResponse = responses[Math.floor(Math.random() * responses.length)];

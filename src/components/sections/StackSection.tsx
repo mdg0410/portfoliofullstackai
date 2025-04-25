@@ -34,14 +34,14 @@ const techStack = {
 };
 
 // Conexiones entre categorías para el diagrama
-const connections = [
-  { from: 'frontend', to: 'backend', label: 'API Calls' },
-  { from: 'backend', to: 'ai', label: 'IA Integration' },
-  { from: 'ai', to: 'frontend', label: 'UI/UX Enhancement' },
-  { from: 'devops', to: 'frontend', label: 'Deployment' },
-  { from: 'devops', to: 'backend', label: 'CI/CD Pipeline' },
-  { from: 'backend', to: 'devops', label: 'Monitoring' },
-];
+// const connections = [
+//   { from: 'frontend', to: 'backend', label: 'API Calls' },
+//   { from: 'backend', to: 'ai', label: 'IA Integration' },
+//   { from: 'ai', to: 'frontend', label: 'UI/UX Enhancement' },
+//   { from: 'devops', to: 'frontend', label: 'Deployment' },
+//   { from: 'devops', to: 'backend', label: 'CI/CD Pipeline' },
+//   { from: 'backend', to: 'devops', label: 'Monitoring' },
+// ];
 
 // Componente para un nodo de tecnología
 interface TechNodeProps {
@@ -52,7 +52,7 @@ interface TechNodeProps {
   delay: number;
 }
 
-const TechNode: React.FC<TechNodeProps> = ({ title, techs, color, position, delay }) => {
+const TechNode: React.FC<TechNodeProps> = ({ title, techs, color, delay }) => {
   return (
     <motion.div
       className={`w-full h-full bg-[#0a0a0a] border-2 border-${color}-500 rounded-sm flex flex-col`}
@@ -112,7 +112,7 @@ interface ConnectionProps {
   color: string;
 }
 
-const Connection: React.FC<ConnectionProps> = ({ from, to, label, delay, color }) => {
+const Connection: React.FC<ConnectionProps> = ({ from, label, delay, color }) => {
   return (
     <div className="w-full h-full flex items-center justify-center relative">
       <motion.div

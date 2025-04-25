@@ -1,11 +1,11 @@
-import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
-import { useState } from 'react';
+import { createBrowserRouter, Outlet } from 'react-router-dom';
+// import { useState } from 'react';
 import Home from '../pages/Home';
 import AIChat from '../components/molecules/AIChat';
 
 // Layout principal que envuelve todas las páginas
 const AppLayout = () => {
-  const [chatOpen, setChatOpen] = useState(false);
+  // const [chatOpen, setChatOpen] = useState(false);
   
   return (
     <div className="app-container bg-[#0D0D0D] min-h-screen text-white">
