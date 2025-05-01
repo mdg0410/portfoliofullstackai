@@ -9,7 +9,7 @@ import SkillsSection from '../components/sections/SkillsSection';
 import ProjectsSection from '../components/sections/ProjectsSection';
 import StackSection from '../components/sections/StackSection';
 import ContactSection from '../components/sections/ContactSection';
-import { Element, Events } from 'react-scroll';
+import { Element, Events, scrollSpy } from 'react-scroll';
 import { AnimatePresence } from 'framer-motion';
 import AIChat from '../components/molecules/AIChat';
 import BugHuntGame from '../components/molecules/BugHuntGame';
@@ -26,6 +26,7 @@ const Home = () => {
       dispatch(setActiveSection(to as any));
     };
 
+    // Registrar eventos de scroll
     Events.scrollEvent.register('begin', (to) => {
       console.log('begin', to);
     });
@@ -39,6 +40,9 @@ const Home = () => {
       Events.scrollEvent.register(section, () => handleSetActive(section));
     });
 
+    // Inicializar scrollSpy para mejorar la detección de sección activa
+    scrollSpy.update();
+
     return () => {
       Events.scrollEvent.remove('begin');
       Events.scrollEvent.remove('end');
@@ -48,18 +52,36 @@ const Home = () => {
     };
   }, [dispatch]);
 
+  // Prevenir comportamiento irregular de scroll 
+  const handleClickNav = (sectionId: string) => {
+    document.getElementById(sectionId)?.scrollIntoView({ 
+      behavior: 'smooth',
+      block: 'start'
+    });
+  };
+
   return (
     <div className="relative">
       {/* Contenedor principal de secciones */}
       <main className="w-full">
-        <Element name="hero">
+        <Element name="hero" id="hero">
           <HeroSection />
         </Element>
-        <AboutSection />
-        <ProjectsSection />
-        <SkillsSection />
-        <StackSection />
-        <ContactSection />
+        <Element name="about" id="about">
+          <AboutSection />
+        </Element>
+        <Element name="projects" id="projects">
+          <ProjectsSection />
+        </Element>
+        <Element name="skills" id="skills">
+          <SkillsSection />
+        </Element>
+        <Element name="stack" id="stack">
+          <StackSection />
+        </Element>
+        <Element name="contact" id="contact">
+          <ContactSection />
+        </Element>
       </main>
 
       {/* Navegación lateral */}
@@ -72,7 +94,7 @@ const Home = () => {
                 className="group relative flex items-center"
                 onClick={(e) => {
                   e.preventDefault();
-                  document.getElementById(section)?.scrollIntoView({ behavior: 'smooth' });
+                  handleClickNav(section);
                 }}
               >
                 <span className="absolute right-full mr-3 text-xs uppercase text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity">
