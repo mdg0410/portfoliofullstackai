@@ -5,7 +5,6 @@ import { useAppDispatch } from '../store';
 import { setActiveSection } from '../store/slices/navigationSlice';
 import HeroSection from '../components/sections/HeroSection';
 import AboutSection from '../components/sections/AboutSection';
-import SkillsSection from '../components/sections/SkillsSection';
 import ProjectsSection from '../components/sections/ProjectsSection';
 import StackSection from '../components/sections/StackSection';
 import ContactSection from '../components/sections/ContactSection';
@@ -36,7 +35,7 @@ const Home = () => {
     });
 
     // Registrar la actualización de sección activa
-    ['hero', 'about', 'projects', 'skills', 'stack', 'contact'].forEach(section => {
+    ['hero', 'about', 'projects', 'stack', 'contact'].forEach(section => {
       Events.scrollEvent.register(section, () => handleSetActive(section));
     });
 
@@ -46,7 +45,7 @@ const Home = () => {
     return () => {
       Events.scrollEvent.remove('begin');
       Events.scrollEvent.remove('end');
-      ['hero', 'about', 'projects', 'skills', 'stack', 'contact'].forEach(section => {
+      ['hero', 'about', 'projects', 'stack', 'contact'].forEach(section => {
         Events.scrollEvent.remove(section);
       });
     };
@@ -73,9 +72,6 @@ const Home = () => {
         <Element name="projects" id="projects">
           <ProjectsSection />
         </Element>
-        <Element name="skills" id="skills">
-          <SkillsSection />
-        </Element>
         <Element name="stack" id="stack">
           <StackSection />
         </Element>
@@ -87,7 +83,7 @@ const Home = () => {
       {/* Navegación lateral */}
       <nav className="fixed right-8 top-1/2 transform -translate-y-1/2 z-40 hidden md:block">
         <ul className="space-y-4">
-          {['hero', 'about', 'projects', 'skills', 'stack', 'contact'].map((section) => (
+          {['hero', 'about', 'projects', 'stack', 'contact'].map((section) => (
             <li key={section}>
               <a
                 href={`#${section}`}

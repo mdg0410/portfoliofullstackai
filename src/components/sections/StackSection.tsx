@@ -6,30 +6,30 @@ import { Element } from 'react-scroll';
 const techStack = {
   frontend: [
     { name: 'React', icon: '⚛️', level: 'Avanzado' },
-    { name: 'Redux', icon: '🔄', level: 'Avanzado' },
+    { name: 'Redux Toolkit', icon: '🔄', level: 'Avanzado' },
     { name: 'TypeScript', icon: 'TS', level: 'Intermedio' },
-    { name: 'Tailwind CSS', icon: '🌊', level: 'Avanzado' },
-    { name: 'Framer Motion', icon: '🎬', level: 'Intermedio' },
   ],
   backend: [
     { name: 'Node.js', icon: '🟢', level: 'Avanzado' },
     { name: 'Express', icon: '🚂', level: 'Avanzado' },
-    { name: 'C#', icon: 'C#', level: 'Intermedio' },
-    { name: 'MongoDB', icon: '🍃', level: 'Avanzado' },
+    { name: 'Fastify', icon: '⚡', level: 'Intermedio' },
+    { name: 'PostgreSQL', icon: '🐘', level: 'Avanzado' },
     { name: 'REST APIs', icon: '🔌', level: 'Avanzado' },
   ],
-  ai: [
-    { name: 'n8n', icon: '📊', level: 'Experto' },
-    { name: 'ChatGPT API', icon: '🤖', level: 'Avanzado' },
-    { name: 'Prompt Engineering', icon: '✍️', level: 'Avanzado' },
-    { name: 'Zoho CRM', icon: '📈', level: 'Avanzado' },
-    { name: 'Integración AI', icon: '🧠', level: 'Intermedio' },
+  security: [
+    { name: 'JWT', icon: '�', level: 'Avanzado' },
+    { name: 'Argon2', icon: '🛡️', level: 'Intermedio' },
+    { name: 'HttpOnly Cookies', icon: '🍪', level: 'Avanzado' },
+  ],
+  aiChatbots: [
+    { name: 'builderbot.app', icon: '🤖', level: 'Experto' },
+    { name: 'baileys', icon: '💬', level: 'Avanzado' },
+    { name: 'Node.js Bots', icon: '�', level: 'Avanzado' },
   ],
   devops: [
+    { name: 'Docker', icon: '�', level: 'Avanzado' },
     { name: 'Git/GitHub', icon: '📚', level: 'Avanzado' },
-    { name: 'CI/CD', icon: '🔄', level: 'Intermedio' },
-    { name: 'Vercel', icon: '▲', level: 'Avanzado' },
-    { name: 'AWS Basics', icon: '☁️', level: 'Básico' },
+    { name: 'GitHub Actions', icon: '⚙️', level: 'Intermedio' },
   ],
 };
 
@@ -208,7 +208,7 @@ const StackSection: React.FC = () => {
               />
             </motion.div>
 
-            {/* AI & Integración */}
+            {/* Seguridad & Auth */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 30 }}
@@ -216,15 +216,15 @@ const StackSection: React.FC = () => {
               className="h-full min-h-[300px]"
             >
               <TechNode 
-                title="AI & INTEGRACIÓN" 
-                techs={techStack.ai} 
+                title="SEGURIDAD & AUTH" 
+                techs={techStack.security} 
                 color="orange" 
                 position="bottom-left" 
                 delay={0.1} 
               />
             </motion.div>
 
-            {/* DevOps */}
+            {/* AI Chatbots */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 30 }}
@@ -232,9 +232,27 @@ const StackSection: React.FC = () => {
               className="h-full min-h-[300px]"
             >
               <TechNode 
-                title="DEVOPS" 
-                techs={techStack.devops} 
+                title="AI CHATBOTS" 
+                techs={techStack.aiChatbots} 
                 color="purple" 
+                position="bottom-right" 
+                delay={0.1} 
+              />
+            </motion.div>
+          </div>
+
+          {/* Nueva fila para DevOps */}
+          <div className="grid grid-cols-1 gap-6 mt-6">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 30 }}
+              transition={{ duration: 0.6, delay: 1.0 }}
+              className="h-full min-h-[300px]"
+            >
+              <TechNode 
+                title="DEVOPS & VCS" 
+                techs={techStack.devops} 
+                color="blue" 
                 position="bottom-right" 
                 delay={0.1} 
               />

@@ -6,31 +6,36 @@ import { Element } from 'react-scroll';
 const skillsData = {
   frontend: [
     { name: 'React', level: 92 },
-    { name: 'Redux', level: 85 },
+    { name: 'Redux Toolkit', level: 85 },
     { name: 'JavaScript', level: 90 },
     { name: 'TypeScript', level: 80 },
     { name: 'CSS/Tailwind', level: 88 },
   ],
   backend: [
-    { name: 'Node.js', level: 85 },
-    { name: 'Express', level: 82 },
-    { name: 'C#', level: 75 },
-    { name: 'MongoDB', level: 78 },
-    { name: 'REST APIs', level: 87 },
+    { name: 'Node.js', level: 88 },
+    { name: 'Express', level: 85 },
+    { name: 'Fastify', level: 78 },
+    { name: 'PostgreSQL', level: 82 },
+    { name: 'REST APIs', level: 90 },
   ],
-  aiTools: [
-    { name: 'n8n', level: 84 },
-    { name: 'Prompt Engineering', level: 90 },
-    { name: 'ChatGPT Integration', level: 88 },
-    { name: 'Zoho CRM', level: 82 },
-    { name: 'Socket.IO', level: 75 },
+  security: [
+    { name: 'JWT', level: 85 },
+    { name: 'Argon2', level: 80 },
+    { name: 'HttpOnly Cookies', level: 88 },
+    { name: 'Auth Architecture', level: 85 },
+    { name: 'Security Principles', level: 82 },
+  ],
+  aiChatbots: [
+    { name: 'builderbot.app', level: 90 },
+    { name: 'baileys', level: 85 },
+    { name: 'Node.js Bots', level: 88 },
+    { name: 'Conversational AI', level: 85 },
   ],
   devOps: [
-    { name: 'Git/GitHub', level: 85 },
-    { name: 'CI/CD', level: 70 },
-    { name: 'Vercel', level: 80 },
-    { name: 'Docker', level: 65 },
-    { name: 'AWS Basics', level: 60 },
+    { name: 'Docker', level: 80 },
+    { name: 'Git/GitHub', level: 90 },
+    { name: 'GitHub Actions', level: 75 },
+    { name: 'CI/CD', level: 78 },
   ]
 };
 
@@ -199,9 +204,14 @@ const SkillsSection: React.FC = () => {
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01" />
       </svg>
     ),
-    aiTools: (
+    security: (
       <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+      </svg>
+    ),
+    aiChatbots: (
+      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
       </svg>
     ),
     devOps: (
@@ -260,15 +270,24 @@ const SkillsSection: React.FC = () => {
               icon={icons.backend}
             />
             <SkillCategory
-              title="IA & INTEGRACIÓN"
-              skills={skillsData.aiTools}
+              title="SEGURIDAD & AUTH"
+              skills={skillsData.security}
               delay={0.7}
-              icon={icons.aiTools}
+              icon={icons.security}
             />
             <SkillCategory
-              title="DEVOPS"
-              skills={skillsData.devOps}
+              title="IA CHATBOTS"
+              skills={skillsData.aiChatbots}
               delay={0.9}
+              icon={icons.aiChatbots}
+            />
+          </div>
+          
+          <div className="grid grid-cols-1 gap-6 mt-6">
+            <SkillCategory
+              title="DEVOPS & VCS"
+              skills={skillsData.devOps}
+              delay={1.1}
               icon={icons.devOps}
             />
           </div>

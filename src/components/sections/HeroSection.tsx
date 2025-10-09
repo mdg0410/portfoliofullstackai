@@ -48,7 +48,7 @@ const HeroSection: React.FC = () => {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={controls}
-        className="max-w-4xl mx-auto text-center z-10"
+        className="max-w-4xl mx-auto text-center z-10 mb-10"
       >
         <div className="inline-block mb-2 px-3 py-1 border border-[#FF4F00] text-xs font-mono text-[#FF4F00]">
           &lt;dev-name role="full-stack" status="online" /&gt;
@@ -72,7 +72,7 @@ const HeroSection: React.FC = () => {
               tracking-wider relative inline-block"
             >
               <span className="mr-2 text-[#FF4F00]">&lt;</span>
-              Cambiando el mundo, un prompt a la vez
+              Desarrollando seguridad con arquitectura robusta
               <span className="ml-2 text-[#FF4F00]">/&gt;</span>
             </motion.h2>
             <motion.div 
@@ -83,14 +83,48 @@ const HeroSection: React.FC = () => {
           </motion.div>
         </div>
         
-        <div className="flex flex-wrap justify-center gap-2 mb-8">
-          {['Full Stack', 'React', 'C#', 'AI Integration', 'n8n', 'Prompt Engineer'].map((tech) => (
-            <span 
-              key={tech}
-              className="inline-block px-3 py-1 bg-gray-800 border border-gray-700 text-sm text-gray-300"
+        {/* Categorías principales de habilidades destacadas */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 max-w-4xl">
+          {[
+            { 
+              title: 'FRONTEND', 
+              skills: ['React', 'Redux Toolkit', 'SPA'],
+              color: '#3b82f6'
+            },
+            { 
+              title: 'BACKEND', 
+              skills: ['Node.js', 'Express/Fastify', 'REST API'],
+              color: '#22c55e'
+            },
+            { 
+              title: 'SEGURIDAD', 
+              skills: ['JWT', 'Argon2', 'Auth'],
+              color: '#f97316'
+            },
+            { 
+              title: 'DEVOPS', 
+              skills: ['Docker', 'GitHub Actions', 'CI/CD'],
+              color: '#a855f7'
+            }
+          ].map((category, index) => (
+            <motion.div
+              key={category.title}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.8 + index * 0.1, duration: 0.5 }}
+              whileHover={{ scale: 1.02, y: -2 }}
+              className="bg-[#0a0a0a] border-2 border-gray-800 p-4 text-center hover:border-[#FF4F00] transition-all duration-300"
+              style={{ borderColor: category.color }}
             >
-              {tech}
-            </span>
+              <div className="text-xs font-mono mb-2" style={{ color: category.color }}>
+                {category.title}
+              </div>
+              {category.skills.map((skill) => (
+                <div key={skill} className="text-xs text-gray-400 mb-1">
+                  {skill}
+                </div>
+              ))}
+            </motion.div>
           ))}
         </div>
 

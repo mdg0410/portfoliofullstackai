@@ -6,18 +6,18 @@ import BlinkingCursor from '../atoms/BlinkingCursor';
 // Datos del perfil (normalmente vendrían de una API o archivo JSON)
 const profileData = {
   "nombre_completo": "Richard Steven Levoyer Chavez",
-  "alias": "Richard / Rocku",
+  "alias": "Richard / mdg0410",
   "rol_profesional": "Desarrollador Full Stack",
-  "stack_actual": ["React", "Vite", "Redux Toolkit", "Node.js", "Express", "MongoDB"],
-  "lenguajes": ["JavaScript", "C#"],
-  "tecnologías_IA": ["ChatGPT (ideas)", "Gemini (investigación)", "Claude (Razonamiento)", "Copilot GitHub (Integración y desarrollo de código)", "Grok (Tendencia)"],
-  "especializaciones": ["Full Stack Apps", "Integraciones IA", "Automatización n8n", "Prompt Engineering"],
-  "estudios": ["ITSCO 2022", "Bootcamp Microverse"],
-  "proyectos_destacados": ["Karibu (MERN karaoke)", "Ghostshop (n8n + CRM)"],
-  "objetivos": ["IA aplicada", "Automatización inteligente", "Prompt Engineering"],
-  "intereses": ["Web avanzado", "UX inmersivo", "Narrativas técnicas"],
-  "estilo_portafolio": {"estética":"Brutalista","scroll":"Interactivo","chatAI":"RockuGPT","blog":"Excluido"},
-  "herramientas_de_trabajo": ["VSCode + Copilot","GitHub","CI/CD Vercel"]
+  "stack_actual": ["React", "Redux Toolkit", "Node.js", "Express", "Fastify", "PostgreSQL"],
+  "lenguajes": ["JavaScript", "TypeScript"],
+  "tecnologías_seguridad": ["JWT con rotación", "Argon2", "Cookies HttpOnly", "Arquitectura de autenticación"],
+  "especializaciones": [ "APIs REST robustas", "Seguridad avanzada", "Chatbots conversacionales"],
+  "estudios": ["ITSCO 2022", "Bootcamp Microverse", "Oracle Alura"],
+  "proyectos_destacados": ["CRM Whastapp", "WhatsApp Chatbot", "Alemana de Serigrafia SPA"],
+  "objetivos": ["Chatbots con builderbot.app", "APIs REST seguras", "Contenedorización Docker"],
+  "intereses": ["Bases de datos relacionales", "DevOps con CI/CD", "Arquitectura de seguridad"],
+  "estilo_portafolio": {"estética":"Brutalista","scroll":"Interactivo","enfoque":"Full-Stack","blog":"Excluido"},
+  "herramientas_de_trabajo": ["Docker", "GitHub", "GitHub Copilot", "PostgreSQL"]
 };
 
 interface LogEntry {
@@ -71,8 +71,8 @@ const AboutSection: React.FC = () => {
       {
         timestamp: '2025-04-17T08:00:07',
         type: 'warning',
-        message: 'Tecnologías IA detectadas',
-        details: profileData.tecnologías_IA.map(tech => `> ${tech}`)
+        message: 'Tecnologías de seguridad detectadas',
+        details: profileData.tecnologías_seguridad.map(tech => `> ${tech}`)
       },
       {
         timestamp: '2025-04-17T08:00:09',
